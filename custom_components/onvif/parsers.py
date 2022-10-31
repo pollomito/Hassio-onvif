@@ -43,7 +43,7 @@ async def async_parse_motion_alarm(uid: str, msg) -> Event | None:
             "binary_sensor",
             "motion",
             None,
-            msg.Message._value_1.Data.SimpleItem[0].Value == "true",
+            msg.Message._value_1.Data.SimpleItem[0].Value != "true",  #PIN Modification
         )
     except (AttributeError, KeyError):
         return None

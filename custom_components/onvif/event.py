@@ -153,7 +153,10 @@ class EventManager:
             .isoformat(timespec="seconds")
             .replace("+00:00", "Z")
         )
-        await self._subscription.Renew(termination_time)
+        try:  #PIN Modification
+            await self._subscription.Renew(termination_time)
+        except Exception:
+            pass
 
     def async_schedule_pull(self) -> None:
         """Schedule async_pull_messages to run."""
